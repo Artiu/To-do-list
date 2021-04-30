@@ -64,5 +64,8 @@ body
 }
 li
 {
+    margin-left:20px;
+    display:grid;
+    grid-template-columns: 80% 20%;
     font-weight: bold;
 }
