@@ -75,8 +75,8 @@ moveItem = (e,event) =>
         }
         if(topMoveEl >= topNextEl)
         {
-            e.style.order += 1;
-            allElements[x].style.order -= 1;
+            e.style.order = Number(e.style.order)+1;
+            allElements[x].style.order = Number(allElements[x].style.order)-1;
             e.style.top = 0;
             firstCursorPos=ev.screenY;//I'm updating this value, because it's new start position
         }
