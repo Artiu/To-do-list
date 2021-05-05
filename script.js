@@ -60,14 +60,25 @@ moveItem = (e,event) =>
         e.style.top = ev.screenY-firstCursorPos+"px";
         let offsetMoveEl = e.getBoundingClientRect();
         let topMoveEl = offsetMoveEl.top;//getting current pos of element which is moving
-        let offsetNextEl = e.nextSibling.getBoundingClientRect();
-        let topNextEl = offsetNextEl.top;
+        let moveElOrder = e.style.order;
+        let allElements = document.getElementsByTagName("li");
+        let x;
+        let topNextEl;
+        for(x=0;x<allElements.length;x++)
+        {
+            if(Number(moveElOrder)+1 == allElements[x].style.order)
+            {
+                let offsetNextEl = allElements[x].getBoundingClientRect();
+                topNextEl = offsetNextEl.top;
+                break;
+            }
+        }
         if(topMoveEl >= topNextEl)
         {
-            
-            /*e.style.order += 1;
-            e.top = 0;
-            e.nextSibling.style.order -= 1;*/
+            e.style.order += 1;
+            allElements[x].style.order -= 1;
+            e.style.top = 0;
+            firstCursorPos=ev.screenY;//I'm updating this value, because it's new start position
         }
     };
     e.addEventListener("mousemove",moveItem2);
