@@ -5,7 +5,7 @@ document.getElementById("submit").addEventListener("click",function(){
     {
         let task = document.getElementById("thing");
         let list = document.getElementById("list");
-        list.innerHTML += "<li onmousedown='moveItem(this,event)'>"+title.value+"<button onClick='removeItem(this)'>Delete task</button><span>"+task.value+"</span></li>";
+        list.innerHTML += "<li onmousedown='moveItem(this,event)' style='order:"+list.children.length+"'>"+title.value+"<button onClick='removeItem(this)'>Delete task</button><span>"+task.value+"</span></li>";
         title.value="";
         task.value="";
     }
@@ -13,6 +13,15 @@ document.getElementById("submit").addEventListener("click",function(){
 removeItem = (e) =>
 {
     e.parentElement.remove();
+    fixOrderity();
+}
+fixOrderity = () =>
+{
+    let allElements = document.getElementsByTagName("li");
+    for(let x=0;x<allElements.length;x++)
+    {
+        allElements[x].style.order = x;
+    }
 }
 window.addEventListener("scroll",function(){
 let str = window.scrollY;
@@ -49,9 +58,22 @@ moveItem = (e,event) =>
     let firstCursorPos = event.screenY;
     var moveItem2 = function(ev){
         e.style.top = ev.screenY-firstCursorPos+"px";
+        let offsetMoveEl = e.getBoundingClientRect();
+        let topMoveEl = offsetMoveEl.top;//getting current pos of element which is moving
+        let offsetNextEl = e.nextSibling.getBoundingClientRect();
+        let topNextEl = offsetNextEl.top;
+        if(topMoveEl >= topNextEl)
+        {
+            
+            /*e.style.order += 1;
+            e.top = 0;
+            e.nextSibling.style.order -= 1;*/
+        }
     };
     e.addEventListener("mousemove",moveItem2);
     var stopItem = function(){
+        e.style.position = "static";
+        e.style.top = 0;
         e.removeEventListener("mousemove",moveItem2);
     };
     e.addEventListener("mouseup",stopItem);
