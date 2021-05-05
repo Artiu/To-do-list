@@ -12,15 +12,29 @@ document.getElementById("submit").addEventListener("click",function(){
 });
 removeItem = (e) =>
 {
+    let itemOrder = e.parentElement.style.order;
     e.parentElement.remove();
-    fixOrderity();
+    fixOrderity(itemOrder);
 }
-fixOrderity = () =>
+fixOrderity = (deletedItem) =>
 {
     let allElements = document.getElementsByTagName("li");
-    for(let x=0;x<allElements.length;x++)
+    if(deletedItem == 0)
     {
-        allElements[x].style.order = x;
+        for(let x=0;x<allElements.length;x++)
+        {
+            allElements[x].style.order -= 1;
+        }
+    }
+    else
+    {
+        for(let x=0;x<allElements.length;x++)
+        {
+            if(allElements[x].style.order >= deletedItem)
+            {
+                allElements[x].style.order -= 1;
+            }
+        }
     }
 }
 window.addEventListener("scroll",function(){
@@ -73,12 +87,30 @@ moveItem = (e,event) =>
                 break;
             }
         }
+        let y;
+        let topPrevEl;
+        for(y=0;y<allElements.length;y++)
+        {
+            if(Number(moveElOrder)-1 == allElements[y].style.order)
+            {
+                let offsetPrevEl = allElements[y].getBoundingClientRect();
+                topPrevEl = offsetPrevEl.top;
+                break;
+            }
+        }
         if(topMoveEl >= topNextEl)
         {
             e.style.order = Number(e.style.order)+1;
             allElements[x].style.order = Number(allElements[x].style.order)-1;
             e.style.top = 0;
             firstCursorPos=ev.screenY;//I'm updating this value, because it's new start position
+        }
+        if(topMoveEl <= topPrevEl)
+        {
+            e.style.order = Number(e.style.order)-1;
+            allElements[y].style.order = Number(allElements[y].style.order)+1;
+            e.style.top = 0;
+            firstCursorPos=ev.screenY;
         }
     };
     e.addEventListener("mousemove",moveItem2);
@@ -88,4 +120,5 @@ moveItem = (e,event) =>
         e.removeEventListener("mousemove",moveItem2);
     };
     e.addEventListener("mouseup",stopItem);
+    e.addEventListener("mouseleave",stopItem);
 }
