@@ -45,7 +45,6 @@ let str = window.scrollY;
 });
 moveItem = (e,event) =>
 {
-    e.style.userSelect = "none";
     e.style.position = "relative";
     let firstCursorPos = event.screenY;
     var moveItem2 = function(ev){
