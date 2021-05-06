@@ -64,7 +64,7 @@ button
     cursor:pointer;
     outline:none;
 }
-#input-div #submit
+#submit, #sendToIDB
 {
     background-color:#0077b6;
     border:1px solid #0077b6;
@@ -105,4 +105,20 @@ li:hover
     min-height: 70%;
     display:flex;
     flex-direction:column;
+}
+#submit:hover, #sendToIDB:hover
+{
+    background-color: #48cae4;
+}
+#warning
+{
+    display: block;
+    width:90%;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px;
+    font-size:12px;
+    text-align: center; 
+    background-color: #48cae4;
+    margin-top:10px;
 }
