@@ -15,6 +15,8 @@ removeItem = (e) =>
     let itemOrder = e.parentElement.style.order;
     e.parentElement.remove();
     fixOrderity(itemOrder);
+    let list = document.getElementById("list").innerHTML;
+    localStorage.setItem("tasks",list);
 }
 fixOrderity = (deletedItem) =>
 {
@@ -122,6 +124,12 @@ moveItem = (e,event) =>
     e.addEventListener("mouseup",stopItem);
     e.addEventListener("mouseleave",stopItem);
 }
-document.getElementById("sendToIDB").addEventListener("click",() =>{
-    
+document.getElementById("sendData").addEventListener("click",() =>{
+    let tasksString=document.getElementById("list").innerHTML;
+    localStorage.setItem("tasks",tasksString);
+    document.getElementById("list").innerHTML = localStorage.getItem("tasks");
+    alert("Your tasks have been saved");//I can do better alert
+});
+window.addEventListener("load",()=>{
+    document.getElementById("list").innerHTML = localStorage.getItem("tasks");
 });
