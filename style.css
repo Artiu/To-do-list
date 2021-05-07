@@ -6,21 +6,28 @@
     margin:0;
     outline: none;
 }
+:root
+{
+    --first-color:#e5e5e5;
+    --second-color:#fca311;
+    --third-color:#14213d;
+}
 body
 {
-    background: linear-gradient(to right,#03045e,#023e8a);
+    background: var(--first-color);
 }
 #list-container
 {
     margin-left:auto;
     margin-right: auto;
     margin-top:50px;
-    border:4px solid #3f37c9;
+    border:4px solid var(--third-color);
     border-radius: 30px;
     padding:30px;
     width:50%;
     min-height:50vh;
     overflow:hidden;
+    background-color: #485f67;
 }
 #list-container h1
 {
@@ -29,19 +36,20 @@ body
 #input-div
 {
     position:sticky;
-    top:0;
+    top:10px;
     margin-left:auto;
     margin-right: auto;
     border-radius: 30px;
     width: fit-content;
     padding: 30px;
     text-align:center;
-    border:4px solid #3f37c9;
+    border:4px solid var(--third-color);
+    background-color: #485f67;
 }
 #input-div #thing
 {
-    background-color: #0077b6;
-    border:1px solid #0077b6;
+    background-color: var(--second-color);
+    border:1px solid var(--second-color);
     border-radius:5px;
     margin-bottom: 10px;
     height:50px;
@@ -49,25 +57,25 @@ body
 }
 #title
 {
-    background-color: #0077b6;
-    border:1px solid #0077b6;
+    background-color: var(--second-color);
+    border:1px solid var(--second-color);
     border-radius:5px;
     margin-bottom: 10px;
 }
 button
 {
-    background-color:#48cae4;
-    border:1px solid #48cae4;
+    background-color:var(--first-color);
+    border:1px solid var(--first-color);
     color:#020b00;
     padding:3px;
     border-radius:10px;
     cursor:pointer;
     outline:none;
 }
-#submit, #sendData
+#submit
 {
-    background-color:#0077b6;
-    border:1px solid #0077b6;
+    background-color:var(--second-color);
+    border:1px solid var(--second-color);
     color:#020b00;
     padding:10px;
     border-radius:10px;
@@ -79,25 +87,26 @@ li
     margin-top:10px;
     color:black;
     padding:5px;
-    border:3px solid #0077b6;
-    border-radius:5px;
-    background-color: #0077b6;
+    border:3px solid var(--third-color);
+    border-radius:20px;
+    background-color: var(--second-color);
     display:grid;
     grid-template-columns: 80% 20%;
     width:90%;
     margin-left:auto;
     margin-right:auto;
     user-select: none;
+    overflow-wrap: break-word;
 }
 input::placeholder, textarea::placeholder
 {
     color:black;
     opacity:0.5;
-    background-color: #0077b6;
+    background-color: var(--second-color);
 }
 li:hover
 {
-    background-color:#02a6ec;
+    background-color:orangered;
     cursor:pointer;
 }
 #list
@@ -106,7 +115,11 @@ li:hover
     display:flex;
     flex-direction:column;
 }
-#submit:hover, #sendData:hover
+#submit:hover
 {
-    background-color: #48cae4;
+    background-color: orangered;
+}
+li button:hover
+{
+    background-color:#ffffff;
 }

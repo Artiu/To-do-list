@@ -1,4 +1,3 @@
-let isScrolled = false;
 document.getElementById("submit").addEventListener("click",function(){
     let title = document.getElementById("title");
     if(title.value!="")
@@ -39,35 +38,6 @@ fixOrderity = (deletedItem) =>
         }
     }
 }
-window.addEventListener("scroll",function(){
-let str = window.scrollY;
-    if(str>150&&isScrolled == false)
-    {
-        document.getElementById("input-div").animate(
-        [
-            {background:'none'},
-            {background:'#3f37c9'}
-        ],
-        {
-            duration:1000
-        });
-        document.getElementById("input-div").style.backgroundColor = "#3f37c9";
-        isScrolled = true;
-    }
-    if(str<150&&isScrolled == true)
-    {
-        document.getElementById("input-div").animate(
-            [
-                {background:'#3f37c9'},
-                {background:'none'}
-            ],
-            {
-                duration:1000
-            });
-            document.getElementById("input-div").style.background = "none";
-            isScrolled = false;
-    }
-});
 moveItem = (e,event) =>
 {
     e.style.position = "relative";
