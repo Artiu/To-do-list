@@ -8,6 +8,7 @@ document.getElementById("submit").addEventListener("click",function(){
         list.innerHTML += "<li onmousedown='moveItem(this,event)' style='order:"+list.children.length+"'><span style='font-weight:bold'>"+title.value+"</span><button onClick='removeItem(this)'>Delete task</button><span>"+task.value+"</span></li>";
         title.value="";
         task.value="";
+        saveData();
     }
 });
 removeItem = (e) =>
@@ -15,8 +16,7 @@ removeItem = (e) =>
     let itemOrder = e.parentElement.style.order;
     e.parentElement.remove();
     fixOrderity(itemOrder);
-    let list = document.getElementById("list").innerHTML;
-    localStorage.setItem("tasks",list);
+    saveData();
 }
 fixOrderity = (deletedItem) =>
 {
@@ -120,16 +120,16 @@ moveItem = (e,event) =>
         e.style.position = "static";
         e.style.top = 0;
         e.removeEventListener("mousemove",moveItem2);
+        saveData();
     };
     e.addEventListener("mouseup",stopItem);
     e.addEventListener("mouseleave",stopItem);
 }
-document.getElementById("sendData").addEventListener("click",() =>{
-    let tasksString=document.getElementById("list").innerHTML;
-    localStorage.setItem("tasks",tasksString);
-    document.getElementById("list").innerHTML = localStorage.getItem("tasks");
-    alert("Your tasks have been saved");//I can do better alert
-});
 window.addEventListener("load",()=>{
     document.getElementById("list").innerHTML = localStorage.getItem("tasks");
 });
+saveData = () =>
+{
+    let tasksString=document.getElementById("list").innerHTML;
+    localStorage.setItem("tasks",tasksString);
+}

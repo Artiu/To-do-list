@@ -110,15 +110,3 @@ li:hover
 {
     background-color: #48cae4;
 }
-#warning
-{
-    display: block;
-    width:90%;
-    margin-right: auto;
-    margin-left: auto;
-    padding: 10px;
-    font-size:12px;
-    text-align: center; 
-    background-color: #48cae4;
-    margin-top:10px;
-}
