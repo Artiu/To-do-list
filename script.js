@@ -4,7 +4,7 @@ document.getElementById("submit").addEventListener("click",function(){
     {
         let task = document.getElementById("thing");
         let list = document.getElementById("list");
-        list.innerHTML += "<li onmousedown='moveItem(this,event)' style='order:"+list.children.length+"'><span style='font-weight:bold'>"+title.value+"</span><button onClick='removeItem(this)'>Delete task</button><span>"+task.value+"</span></li>";
+        list.innerHTML += "<li onmousedown='moveItem(this,event)' style='order:"+list.children.length+"'><span style='font-weight:bold'>"+title.value+"</span><button onClick='removeItem(this)'>Delete task</button><br><<span class='content'>"+task.value+"</span></li>";
         title.value="";
         task.value="";
         saveData();

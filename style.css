@@ -62,6 +62,7 @@ body
     border:1px solid var(--second-color);
     border-radius:5px;
     margin-bottom: 10px;
+    width:100%;
 }
 button
 {
@@ -72,9 +73,11 @@ button
     border-radius:10px;
     cursor:pointer;
     outline:none;
+    float:right;
 }
 #submit
 {
+    float:none;
     background-color:var(--second-color);
     border:1px solid var(--second-color);
     color:#020b00;
@@ -91,8 +94,7 @@ li
     border:3px solid var(--third-color);
     border-radius:20px;
     background-color: var(--second-color);
-    display:grid;
-    grid-template-columns: 80% 20%;
+    list-style-type: none;
     width:90%;
     margin-left:auto;
     margin-right:auto;
@@ -124,4 +126,31 @@ li:hover
 li button:hover
 {
     background-color:#ffffff;
+}
+@media (max-width:855px)
+{
+    *
+    {
+        font-size:1.3rem;
+    }
+    body
+    {
+        background-color:#485f67;
+    };
+    #input-div
+    {
+        width:100%;
+    }
+    #thing
+    {
+        width:80%;
+    }
+    #list-container
+    {
+        width:80%;
+    }
+    li
+    {
+        grid-template-columns: 70% 30%;
+    }
 }
