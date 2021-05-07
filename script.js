@@ -46,16 +46,17 @@ moveItem = (e,event) =>
         e.style.top = ev.screenY-firstCursorPos+"px";
         let offsetMoveEl = e.getBoundingClientRect();
         let topMoveEl = offsetMoveEl.top;//getting current pos of element which is moving
+        let bottomMoveEl = topMoveEl + e.clientHeight;
         let moveElOrder = e.style.order;
         let allElements = document.getElementsByTagName("li");
         let x;
-        let topNextEl;
+        let bottomNextEl;
         for(x=0;x<allElements.length;x++)
         {
             if(Number(moveElOrder)+1 == allElements[x].style.order)
             {
                 let offsetNextEl = allElements[x].getBoundingClientRect();
-                topNextEl = offsetNextEl.top;
+                bottomNextEl = offsetNextEl.top+allElements[x].clientHeight;
                 break;
             }
         }
@@ -70,7 +71,7 @@ moveItem = (e,event) =>
                 break;
             }
         }
-        if(topMoveEl >= topNextEl)
+        if(bottomMoveEl >= bottomNextEl)
         {
             e.style.order = Number(e.style.order)+1;
             allElements[x].style.order = Number(allElements[x].style.order)-1;
